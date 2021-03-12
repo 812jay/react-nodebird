@@ -4,12 +4,24 @@ import Link from "next/link";
 import { Menu, Input, Row, Col } from "antd";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { createGlobalStyle } from "styled-components";
 
-import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
+import UserProfile from "./UserProfile";
 
-const SearchInput = styled(Input.Search)`
-  vertical-align: middle;
+const Global = createGlobalStyle`
+  .ant-row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .ant-col:first-child{
+    padding-left: 0 !important;
+  }
+
+  .ant-col:last-child{
+    padding-right: 0 !important;
+  }
 `;
 
 const AppLayout = ({ children }) => {
@@ -17,6 +29,7 @@ const AppLayout = ({ children }) => {
 
   return (
     <div>
+      <Global />
       <Menu mode="horizontal">
         <Menu.Item>
           <Link href="/">
@@ -28,13 +41,8 @@ const AppLayout = ({ children }) => {
             <a>프로필</a>
           </Link>
         </Menu.Item>
-        <Menu.Item>
-          <SearchInput enterButton />
-        </Menu.Item>
-        <Menu.Item>
-          <Link href="/signup">
-            <a>회원가입</a>
-          </Link>
+        <Menu.Item key="mail">
+          <Input.Search enterButton style={{ verticalAlign: "middle" }} />
         </Menu.Item>
       </Menu>
       <Row gutter={8}>
