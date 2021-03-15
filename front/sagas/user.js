@@ -18,14 +18,15 @@ function logInAPI(data) {
 
 function* logIn(action) {
   try {
-    console.log("saga login");
-    // const result = yield call(logInAPI, action.data);
+    console.log('saga logIn');
+    // const result = yield call(logInAPI);
     yield delay(1000);
     yield put({
       type: LOG_IN_SUCCESS,
       data: action.data,
     });
   } catch (err) {
+    console.error(err);
     yield put({
       type: LOG_IN_FAILURE,
       error: err.response.data,
@@ -84,5 +85,5 @@ function* watchSignUp() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchLogOut), watchSignUp]);
+  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchSignUp)]);
 }

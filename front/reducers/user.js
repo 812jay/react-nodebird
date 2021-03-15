@@ -34,54 +34,42 @@ export const UNFOLLOW_SUCCESS = "UNFOLLOW_SUCCESS";
 export const UNFOLLOW_FAILURE = "UNFOLLOW_FAILURE";
 
 const dummyUser = (data) => ({
-  ...action.data,
+  ...data,
   nickname: "제로초",
   id: 1,
-  Post: [],
+  Posts: [],
   Followings: [],
   Followers: [],
 });
 
-export const loginRequestAction = (data) => {
-  return {
+export const loginRequestAction = (data) => ({
     type: LOG_IN_REQUEST,
     data,
-  };
-};
+});
 
-export const loginSuccessAction = (data) => {
-  return {
+export const loginSuccessAction = (data) => ({
     type: LOG_IN_SUCCESS,
     data,
-  };
-};
+});
 
-export const loginFailureAction = (data) => {
-  return {
+export const loginFailureAction = (data) => ({
     type: LOG_IN_FAILURE,
     data,
-  };
-};
+});
 
-export const logoutRequestAction = (data) => {
-  return {
+export const logoutRequestAction = (data) => ({
     type: LOG_OUT_REQUEST,
-  };
-};
+});
 
-export const logOutSuccessAction = (data) => {
-  return {
+export const logOutSuccessAction = (data) => ({
     type: LOG_OUT_SUCCESS,
     data,
-  };
-};
+});
 
-export const logOutFailureAction = (data) => {
-  return {
+export const logOutFailureAction = (data) => ({
     type: LOG_OUT_FAILURE,
     data,
-  };
-};
+});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
