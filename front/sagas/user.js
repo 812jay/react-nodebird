@@ -10,6 +10,9 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
+  CHANGE_NICKNAME_REQUEST,
+  CHANGE_NICKNAME_SUCCESS,
+  CHANGE_NICKNAME_FAILURE,
 } from "../reducers/user";
 
 function logInAPI(data) {
@@ -48,6 +51,25 @@ function* logOut(action) {
   } catch (err) {
     yield put({
       type: LOG_OUT_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function changeNicknameAPI(data) {
+  return axios.post("/api/signUp", data);
+}
+
+function* changeNickname(action) {
+  try {
+    // const result = yield call(changeNicknameAPI, action.data);
+    yield delay(1000);
+    yield put({
+      type: CHANGE_NICKNAME_SUCCESS,
+    });
+  } catch (err) {
+    yield put({
+      type: CHANGE_NICKNAME_FAILURE,
       error: err.response.data,
     });
   }
