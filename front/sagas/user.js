@@ -1,5 +1,5 @@
-import { all, delay, fork, put, takeLatest } from "redux-saga/effects";
-import axios from "axios";
+import { all, delay, fork, put, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
 import {
   LOG_IN_REQUEST,
   LOG_IN_FAILURE,
@@ -13,10 +13,10 @@ import {
   CHANGE_NICKNAME_REQUEST,
   CHANGE_NICKNAME_SUCCESS,
   CHANGE_NICKNAME_FAILURE,
-} from "../reducers/user";
+} from '../reducers/user';
 
 function logInAPI(data) {
-  return axios.post("/api/login", data);
+  return axios.post('/api/login', data);
 }
 
 function* logIn(action) {
@@ -38,7 +38,7 @@ function* logIn(action) {
 }
 
 function logOutAPI(data) {
-  return axios.post("/api/logout", data);
+  return axios.post('/api/logout', data);
 }
 
 function* logOut(action) {
@@ -57,7 +57,7 @@ function* logOut(action) {
 }
 
 function changeNicknameAPI(data) {
-  return axios.post("/api/signUp", data);
+  return axios.post('/api/signUp', data);
 }
 
 function* changeNickname(action) {
@@ -76,7 +76,7 @@ function* changeNickname(action) {
 }
 
 function signUpAPI(data) {
-  return axios.post("/api/signUp", data);
+  return axios.post('/api/signUp', data);
 }
 
 function* signUp(action) {
