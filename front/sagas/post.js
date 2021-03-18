@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   takeLatest,
   put,
@@ -6,8 +6,8 @@ import {
   all,
   fork,
   throttle,
-} from "redux-saga/effects";
-import shortid from "shortid";
+} from 'redux-saga/effects';
+import shortid from 'shortid';
 import {
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
@@ -22,16 +22,16 @@ import {
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_FAILURE,
   generateDummyPost,
-} from "../reducers/post";
-import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from "../reducers/user";
+} from '../reducers/post';
+import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from '../reducers/user';
 
 function loadPostsAPI(data) {
-  return axios.post("/api/post", data);
+  return axios.post('/api/post', data);
 }
 
 function* loadPosts(action) {
   try {
-    console.log("loadpost");
+    console.log('loadpost');
     // const result = yield call(addPostAPI, action.data);
     yield delay(1000);
     yield put({
@@ -47,7 +47,7 @@ function* loadPosts(action) {
 }
 
 function addPostAPI(data) {
-  return axios.post("/api/post", data);
+  return axios.post('/api/post', data);
 }
 
 function* addPost(action) {

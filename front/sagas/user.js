@@ -13,6 +13,12 @@ import {
   CHANGE_NICKNAME_REQUEST,
   CHANGE_NICKNAME_SUCCESS,
   CHANGE_NICKNAME_FAILURE,
+  FOLLOW_SUCCESS,
+  FOLLOW_FAILURE,
+  UNFOLLOW_SUCCESS,
+  UNFOLLOW_FAILURE,
+  FOLLOW_REQUEST,
+  UNFOLLOW_REQUEST,
 } from '../reducers/user';
 
 function logInAPI(data) {
@@ -21,7 +27,6 @@ function logInAPI(data) {
 
 function* logIn(action) {
   try {
-    console.log('saga logIn');
     // const result = yield call(logInAPI);
     yield delay(1000);
     yield put({
@@ -75,13 +80,51 @@ function* changeNickname(action) {
   }
 }
 
+function followAPI(data) {
+  return axios.post('/api/follow', data);
+}
+
+function* follow(action) {
+  try {
+    // const result = yield call(followAPI, action.data);
+    yield delay(1000);
+    yield put({
+      type: FOLLOW_SUCCESS,
+    });
+  } catch (err) {
+    yield put({
+      type: FOLLOW_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+function unfollowAPI(data) {
+  return axios.post('/api/unfollow', data);
+}
+
+function* unfollow(action) {
+  try {
+    // const result = yield call(followAPI, action.data);
+    yield delay(1000);
+    yield put({
+      type: UNFOLLOW_SUCCESS,
+    });
+  } catch (err) {
+    yield put({
+      type: UNFOLLOW_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function signUpAPI(data) {
   return axios.post('/api/signUp', data);
 }
 
 function* signUp(action) {
   try {
-    // const result = yield call(signUpAPI, action.data);
+    // const result = yield call(unfollowAPI, action.data);
     yield delay(1000);
     yield put({
       type: SIGN_UP_SUCCESS,
@@ -92,6 +135,14 @@ function* signUp(action) {
       error: err.response.data,
     });
   }
+}
+
+function* watchFollow() {
+  yield takeLatest(FOLLOW_REQUEST, unfollow);
+}
+
+function* watchUnfollow() {
+  yield takeLatest(UNFOLLOW_REQUEST, follow);
 }
 
 function* watchLogIn() {
@@ -107,5 +158,11 @@ function* watchSignUp() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchSignUp)]);
+  yield all([
+    fork(watchLogIn),
+    fork(watchLogOut),
+    fork(watchSignUp),
+    fork(watchFollow),
+    fork(watchUnfollow),
+  ]);
 }

@@ -1,13 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import { Menu, Input, Row, Col } from "antd";
-import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { createGlobalStyle } from "styled-components";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Link from 'next/link';
+import { Menu, Input, Row, Col } from 'antd';
+import { createGlobalStyle } from 'styled-components';
+import { useSelector } from 'react-redux';
 
-import LoginForm from "./LoginForm";
-import UserProfile from "./UserProfile";
+import LoginForm from './LoginForm';
+import UserProfile from './UserProfile';
 
 const Global = createGlobalStyle`
   .ant-row {
@@ -42,7 +41,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item key="mail">
-          <Input.Search enterButton style={{ verticalAlign: "middle" }} />
+          <Input.Search enterButton style={{ verticalAlign: 'middle' }} />
         </Menu.Item>
         <Menu.Item>
           <Link href="/signUp">

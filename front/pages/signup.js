@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from "react";
-import Head from "next/head";
-import { Button, Checkbox, Form, Input } from "antd";
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useState } from 'react';
+import Head from 'next/head';
+import { Button, Checkbox, Form, Input } from 'antd';
+import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 
-import AppLayout from "../components/AppLayout";
-import useInput from "../hooks/useInput";
-import { SIGN_UP_REQUEST } from "../reducers/user";
+import AppLayout from '../components/AppLayout';
+import useInput from '../hooks/useInput';
+import { SIGN_UP_REQUEST } from '../reducers/user';
 
 const ErrorMessage = styled.div`
   color: red;
@@ -14,23 +14,23 @@ const ErrorMessage = styled.div`
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const { signUpLoading } = useSelector((state)=> state.user)
+  const { signUpLoading } = useSelector((state) => state.user);
 
-  const [email, onChangeEmail] = useInput("");
-  const [password, onChangePassword] = useInput("");
-  const [nickname, onChangeNickname] = useInput("");
+  const [email, onChangeEmail] = useInput('');
+  const [password, onChangePassword] = useInput('');
+  const [nickname, onChangeNickname] = useInput('');
 
-  const [passwordCheck, setPasswordCheck] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const onChangePasswordCheck = useCallback(
     (e) => {
       setPasswordCheck(e.target.value);
       setPasswordError(e.target.value !== password);
     },
-    [password]
+    [password],
   );
 
-  const [term, setTerm] = useState("");
+  const [term, setTerm] = useState('');
   const [termError, setTermError] = useState(false);
   const onChangeTerm = useCallback((e) => {
     setTerm(e.target.checked);
@@ -45,10 +45,10 @@ const Signup = () => {
       return setTermError(true);
     }
     console.log(email, nickname, password);
-    disptch({
+    return dispatch({
       type: SIGN_UP_REQUEST,
-      data: {email, password, nickname}
-    })
+      data: { email, password, nickname },
+    });
   }, [email, password, passwordCheck, term]);
 
   return (
@@ -60,7 +60,13 @@ const Signup = () => {
         <div>
           <label htmlFor="user-email">이메일</label>
           <br />
-          <Input name="user-email" type="email" value={email} onChange={onChangeEmail} required />
+          <Input
+            name="user-email"
+            type="email"
+            value={email}
+            onChange={onChangeEmail}
+            required
+          />
         </div>
         <div>
           <label htmlFor="user-nickname">닉네임</label>
