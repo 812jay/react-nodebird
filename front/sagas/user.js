@@ -13,12 +13,12 @@ import {
   CHANGE_NICKNAME_REQUEST,
   CHANGE_NICKNAME_SUCCESS,
   CHANGE_NICKNAME_FAILURE,
+  FOLLOW_REQUEST,
   FOLLOW_SUCCESS,
   FOLLOW_FAILURE,
+  UNFOLLOW_REQUEST,
   UNFOLLOW_SUCCESS,
   UNFOLLOW_FAILURE,
-  FOLLOW_REQUEST,
-  UNFOLLOW_REQUEST,
 } from '../reducers/user';
 
 function logInAPI(data) {
@@ -90,6 +90,7 @@ function* follow(action) {
     yield delay(1000);
     yield put({
       type: FOLLOW_SUCCESS,
+      data: action.data,
     });
   } catch (err) {
     yield put({
@@ -109,6 +110,7 @@ function* unfollow(action) {
     yield delay(1000);
     yield put({
       type: UNFOLLOW_SUCCESS,
+      data: action.data,
     });
   } catch (err) {
     yield put({
@@ -138,11 +140,11 @@ function* signUp(action) {
 }
 
 function* watchFollow() {
-  yield takeLatest(FOLLOW_REQUEST, unfollow);
+  yield takeLatest(FOLLOW_REQUEST, follow);
 }
 
 function* watchUnfollow() {
-  yield takeLatest(UNFOLLOW_REQUEST, follow);
+  yield takeLatest(UNFOLLOW_REQUEST, unfollow);
 }
 
 function* watchLogIn() {
