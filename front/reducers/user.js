@@ -123,9 +123,9 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       draft.unfollowError = action.error;
       break;
     case LOG_IN_REQUEST:
-      draft.followLoading = true;
-      draft.followError = null;
-      draft.followDone = false;
+      draft.loginLoading = true;
+      draft.loginError = null;
+      draft.loginDone = false;
       break;
     case LOG_IN_SUCCESS:
       draft.logInLoading = false;
