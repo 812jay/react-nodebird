@@ -120,13 +120,13 @@ function* unfollow(action) {
   }
 }
 
-function signUpAPI() {
-  return axios.post('http://localhost:3065/user');
+function signUpAPI(data) {
+  return axios.post('http://localhost:3065/user', data);
 }
 
-function* signUp() {
+function* signUp(action) {
   try {
-    const result = yield call(signUpAPI);
+    const result = yield call(signUpAPI, action.data);
     console.log(result);
     yield put({
       type: SIGN_UP_SUCCESS,
