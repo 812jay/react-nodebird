@@ -12,6 +12,7 @@ router.post('/', async (req, res, next) => {
            } 
         });
         if(exUser){
+            console.log(`exUser! ${JSON.stringify(exUser)}`)
             return res.status(403).send('이미 사용중인 아이디 압니다.');
         }
         const hashedPassword = await bcrypt.hash(req.body.password, 11);
